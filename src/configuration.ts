@@ -11,10 +11,10 @@ import { join } from 'path';
     {
       component: swagger,
       // 只在 local 环境下启用
-      enabledEnvironment: ['local', 'prod'],
-    },
+      enabledEnvironment: ['local', 'prod']
+    }
   ],
-  importConfigs: [join(__dirname, './config/')],
+  importConfigs: [join(__dirname, './config/')]
 })
 export class ContainerLifeCycle implements ILifeCycle {
   @App()

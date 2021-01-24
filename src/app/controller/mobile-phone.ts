@@ -9,6 +9,7 @@ import {
   Query,
   Body,
   Param,
+  Validate
   // ALL,
 } from '@midwayjs/decorator';
 import { Context } from 'egg';
@@ -20,7 +21,7 @@ import { ICreateIn, IUpdateIn } from '../interfaces/mobile-phone';
 @Provide()
 @Controller('/api/mobile-phone', {
   tagName: 'MobilePhone',
-  description: '手机信息管理',
+  description: '手机信息管理'
 })
 export class MobilePhoneController extends BaseController {
   @Inject()
@@ -63,6 +64,7 @@ export class MobilePhoneController extends BaseController {
   }
 
   @Post('/create')
+  @Validate()
   @(CreateApiDoc()
     .summary('添加手机')
     .description('添加手机')

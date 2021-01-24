@@ -9,17 +9,17 @@ export const orm: ConnectionOptions = {
   password: 'Admin@123',
   database: 'egg_test',
   synchronize: false,
-  logging: true,
+  logging: true
 };
 
 export const cluster = {
   listen: {
     path: '',
     port: 8088,
-    hostname: '127.0.0.1',
-  },
+    hostname: '127.0.0.1'
+  }
 };
 
 export const security = {
-  csrf: false,
+  csrf: false
 };

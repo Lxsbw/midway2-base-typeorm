@@ -20,12 +20,12 @@ export default (appInfo: EggAppInfo) => {
     contact: {
       name: 'tkvern',
       url: 'https://github.com/tkvern',
-      email: 'lxsbw@outlook.com',
+      email: 'lxsbw@outlook.com'
     },
     license: {
       name: 'MIT',
-      url: 'https://github.com/midwayjs/midway/blob/serverless/LICENSE',
-    },
+      url: 'https://github.com/midwayjs/midway/blob/serverless/LICENSE'
+    }
     // 访问：http://127.0.0.1:7001/swagger-ui/index.html 拿到 swagger UI 界面。
     // 访问：http://127.0.0.1:7001/swagger-ui/json 拿到 swagger json 结构。
   };

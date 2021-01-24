@@ -33,31 +33,37 @@ export class ICreateIn {
    * 型号
    */
   @CreateApiPropertyDoc('型号', { example: 'xx' })
+  @Rule(RuleType.string().required().trim().optional())
   modelName: string;
   /**
    * 尺寸
    */
   @CreateApiPropertyDoc('尺寸', { example: '4.7' })
+  @Rule(RuleType.string().required().trim().optional())
   size: string;
   /**
    * 规格
    */
   @CreateApiPropertyDoc('规格', { example: 'blue' })
+  @Rule(RuleType.string().required().trim().optional())
   spec: string;
   /**
    * 内存
    */
   @CreateApiPropertyDoc('内存', { example: 800 })
+  @Rule(RuleType.number().optional())
   ram: number;
   /**
    * 空间
    */
   @CreateApiPropertyDoc('空间', { example: 12800 })
+  @Rule(RuleType.number().optional())
   rom: number;
   /**
    * 序列号
    */
   @CreateApiPropertyDoc('序列号', { example: '00010' })
+  @Rule(RuleType.string().required().trim().optional())
   seriaNumber: string;
 }
 

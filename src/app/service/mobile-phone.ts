@@ -11,7 +11,7 @@ import {
   ICreateIn,
   ICreateOut,
   IUpdateIn,
-  IDelIn,
+  IDelIn
 } from '../interfaces/mobile-phone';
 import * as SnowFlake from '../utils/SnowFlake';
 
@@ -60,7 +60,7 @@ export class MobilePhoneService extends BaseService {
       where,
       order,
       skip: offset,
-      take: limit,
+      take: limit
     };
 
     const [rows, count] = await this.mobilePhoneModel.findAndCount(options);

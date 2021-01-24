@@ -9,13 +9,13 @@ export const orm: ConnectionOptions = {
   password: 'Admin@123',
   database: 'egg_test',
   synchronize: false,
-  logging: true,
+  logging: true
 };
 
 export const cluster = {
   listen: {
     path: '',
     port: 8089,
-    hostname: '127.0.0.1',
-  },
+    hostname: '127.0.0.1'
+  }
 };

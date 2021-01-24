@@ -21,14 +21,14 @@ export class BaseModel {
   @CreateDateColumn({
     type: 'datetime',
     name: 'created_at',
-    comment: '创建时间',
+    comment: '创建时间'
   })
   createdAt: Date;
 
   @UpdateDateColumn({
     type: 'datetime',
     name: 'updated_at',
-    comment: '更新时间',
+    comment: '更新时间'
   })
   updatedAt: Date;
 
@@ -37,7 +37,7 @@ export class BaseModel {
     type: 'datetime',
     name: 'deleted_at',
     select: false,
-    comment: '删除时间',
+    comment: '删除时间'
   })
   deletedAt: Date;
 
