@@ -15,7 +15,11 @@ export const orm: ConnectionOptions = {
 export const cluster = {
   listen: {
     path: "",
-    port: 7003,
+    port: 8088,
     hostname: "127.0.0.1",
   },
+};
+
+export const security = {
+  csrf: false,
 };

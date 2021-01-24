@@ -2,7 +2,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   DeleteDateColumn, // 软删除需要引入
-  AfterLoad,
+  //   AfterLoad,
 } from "typeorm";
 
 /**
@@ -11,17 +11,17 @@ import {
  * 默认还会有createdAt、updatedAt
  */
 export class BaseModel {
-  id: string;
+  //   id: string;
 
-  @CreateDateColumn({
-    name: "created_at",
-  })
-  createdAt: Date;
+  //   @CreateDateColumn({
+  //     name: "created_at",
+  //   })
+  //   createdAt: Date;
 
-  @UpdateDateColumn({
-    name: "updated_at",
-  })
-  updatedAt: Date;
+  //   @UpdateDateColumn({
+  //     name: "updated_at",
+  //   })
+  //   updatedAt: Date;
 
   // 软删除默认需要配置的字段
   @DeleteDateColumn({
@@ -30,9 +30,25 @@ export class BaseModel {
   })
   deletedAt: Date;
 
+  @CreateDateColumn({
+    type: "datetime",
+    nullable: false,
+    name: "created_at",
+    comment: "创建时间",
+  })
+  createdAt: Date;
+
+  @UpdateDateColumn({
+    type: "datetime",
+    nullable: false,
+    name: "updated_at",
+    comment: "更新时间",
+  })
+  updatedAt: Date;
+
   // 对字段进行预处理
-  @AfterLoad()
-  init() {
-    this.id = String(this.id);
-  }
+  //   @AfterLoad()
+  //   init() {
+  //     this.id = String(this.id);
+  //   }
 }

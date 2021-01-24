@@ -2,18 +2,18 @@
  * @Author: zhixiong.fu
  * @Date: 2021-01-24 16:01:10
  * @Last Modified by: zhixiong.fu
- * @Last Modified time: 2021-01-24 16:05:31
+ * @Last Modified time: 2021-01-24 19:20:32
  */
 import { EntityModel } from "@midwayjs/orm";
-import { Column, PrimaryGeneratedColumn } from "typeorm";
+import { Column, PrimaryColumn } from "typeorm";
 import { BaseModel } from "../base/base-model";
 
 @EntityModel({
   name: "mobile_phone",
 })
 export class MobilePhoneModel extends BaseModel {
-  @PrimaryGeneratedColumn({
-    type: "integer",
+  @PrimaryColumn({
+    type: "varchar",
   })
   id: string;
 

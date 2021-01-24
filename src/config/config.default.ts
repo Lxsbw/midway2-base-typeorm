@@ -11,15 +11,23 @@ export default (appInfo: EggAppInfo) => {
   // add your config here
   config.middleware = [];
 
-  /**
-   *  cluster 端口
-   */
-  config.cluster = {
-    listen: {
-      path: "",
-      port: 7002,
-      hostname: "127.0.0.1",
+  config.swagger = {
+    title: "Midway2 Swagger",
+    description:
+      "This is a sample server Midway server.  You can find out more about     Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).      For this sample, you can use the api key `special-key` to test the authorization     filters.",
+    version: "1.0.0",
+    termsOfService: "https://github.com/fsd-nodejs/service-mw2",
+    contact: {
+      name: "tkvern",
+      url: "https://github.com/tkvern",
+      email: "lxsbw@outlook.com",
     },
+    license: {
+      name: "MIT",
+      url: "https://github.com/midwayjs/midway/blob/serverless/LICENSE",
+    },
+    // 访问：http://127.0.0.1:7001/swagger-ui/index.html 拿到 swagger UI 界面。
+    // 访问：http://127.0.0.1:7001/swagger-ui/json 拿到 swagger json 结构。
   };
 
   return config;

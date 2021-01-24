@@ -1,14 +1,20 @@
-import { App, Configuration } from '@midwayjs/decorator';
-import { ILifeCycle } from '@midwayjs/core';
-import { Application } from 'egg';
-import * as orm from '@midwayjs/orm';
-import { join } from 'path';
+import { App, Configuration } from "@midwayjs/decorator";
+import { ILifeCycle } from "@midwayjs/core";
+import { Application } from "egg";
+import * as orm from "@midwayjs/orm";
+import * as swagger from "@midwayjs/swagger";
+import { join } from "path";
 
 @Configuration({
   imports: [
     orm, // 加载 orm 组件
+    {
+      component: swagger,
+      // 只在 local 环境下启用
+      enabledEnvironment: ["local"],
+    },
   ],
-  importConfigs: [join(__dirname, './config/')],
+  importConfigs: [join(__dirname, "./config/")],
 })
 export class ContainerLifeCycle implements ILifeCycle {
   @App()
