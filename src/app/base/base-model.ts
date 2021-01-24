@@ -1,9 +1,4 @@
-import {
-  CreateDateColumn,
-  UpdateDateColumn,
-  DeleteDateColumn, // 软删除需要引入
-  //   AfterLoad,
-} from "typeorm";
+import { CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from "typeorm";
 
 /**
  * 基础的Model，对id字段默认会 转字符串处理
@@ -23,16 +18,8 @@ export class BaseModel {
   //   })
   //   updatedAt: Date;
 
-  // 软删除默认需要配置的字段
-  @DeleteDateColumn({
-    name: "deleted_at",
-    select: false,
-  })
-  deletedAt: Date;
-
   @CreateDateColumn({
     type: "datetime",
-    nullable: false,
     name: "created_at",
     comment: "创建时间",
   })
@@ -40,11 +27,19 @@ export class BaseModel {
 
   @UpdateDateColumn({
     type: "datetime",
-    nullable: false,
     name: "updated_at",
     comment: "更新时间",
   })
   updatedAt: Date;
+
+  // 软删除默认需要配置的字段
+  @DeleteDateColumn({
+    type: "datetime",
+    name: "deleted_at",
+    select: false,
+    comment: "删除时间",
+  })
+  deletedAt: Date;
 
   // 对字段进行预处理
   //   @AfterLoad()

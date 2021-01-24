@@ -106,3 +106,11 @@ export class IUpdateIn {
   @CreateApiPropertyDoc("序列号")
   seriaNumber: string;
 }
+
+export class IDelIn {
+  /**
+   * id
+   */
+  @CreateApiPropertyDoc("id")
+  id: string;
+}

@@ -1,20 +1,21 @@
 import {
+  Provide,
   Inject,
   Controller,
   Get,
   Post,
-  //   Put,
-  Provide,
+  Put,
+  Del,
   Query,
   Body,
-  //   ALL,
-  //   Param,
+  Param,
+  // ALL,
 } from "@midwayjs/decorator";
 import { Context } from "egg";
 import { CreateApiDoc } from "@midwayjs/swagger";
 import { BaseController } from "../base/base.controller";
 import { IMobilePhoneService } from "../service/mobile-phone";
-import { ICreateIn } from "../interfaces/mobile-phone";
+import { ICreateIn, IUpdateIn } from "../interfaces/mobile-phone";
 
 @Provide()
 @Controller("/api/mobile-phone", {
@@ -73,16 +74,29 @@ export class MobilePhoneController extends BaseController {
     return { success: true, message: "OK", data: result };
   }
 
-  //   @Put("/update")
-  //   @(CreateApiDoc()
-  //     .summary("更新手机")
-  //     .description("更新手机")
-  //     .param("ctx")
-  //     .param("手机信息", { type: "object", required: true })
-  //     .build())
-  //   async update(ctx: Context, @Body() param: IUpdateIn) {
-  //     console.log("Controller : ", ctx.request.body);
-  //     const result = await this.mobilePhoneService.update(ctx.request.body);
-  //     return { success: true, message: "OK", data: result };
-  //   }
+  @Put("/update")
+  @(CreateApiDoc()
+    .summary("更新手机")
+    .description("更新手机")
+    .param("ctx")
+    .param("手机信息", { type: "object", required: true })
+    .build())
+  async update(ctx: Context, @Body() param: IUpdateIn) {
+    // console.log("Controller : ", ctx.request.body);
+    const result = await this.mobilePhoneService.update(ctx.request.body);
+    return { success: true, message: "OK", data: result };
+  }
+
+  @Del("/delete/:id")
+  @(CreateApiDoc()
+    .summary("删除手机")
+    .description("删除手机")
+    .param("ctx")
+    .param("手机id", { type: "object", required: true })
+    .build())
+  async delete(ctx: Context, @Param() id: string) {
+    console.log("Controller : ", ctx.params);
+    const result = await this.mobilePhoneService.delete({ id: ctx.params.id });
+    return { success: true, message: "OK", data: result };
+  }
 }

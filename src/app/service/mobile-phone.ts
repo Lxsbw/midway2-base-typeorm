@@ -2,7 +2,7 @@ import { Provide, Inject } from "@midwayjs/decorator";
 import { Context } from "egg";
 import { InjectEntityModel } from "@midwayjs/orm";
 import { Repository, Like, FindManyOptions } from "typeorm";
-// import { LoDashStatic } from "lodash";
+import * as _ from "lodash";
 import { BaseService } from "../base/base.service";
 import { MobilePhoneModel } from "../model/mobile-phone";
 import {
@@ -10,7 +10,8 @@ import {
   IFindOneIn,
   ICreateIn,
   ICreateOut,
-  //   IUpdateIn,
+  IUpdateIn,
+  IDelIn,
 } from "../interfaces/mobile-phone";
 import * as SnowFlake from "../utils/SnowFlake";
 
@@ -86,37 +87,46 @@ export class MobilePhoneService extends BaseService {
     return { id: entity.id };
   }
 
-  //   /**
-  //    * 更新
-  //    */
-  //   async update(param: IUpdateIn): Promise<any> {
-  //     let uData: any = {};
-  //     if (param.id) {
-  //       uData.id = param.id;
-  //     }
-  //     if (param.modelName) {
-  //       uData.modelName = param.modelName;
-  //     }
-  //     if (param.size) {
-  //       uData.size = param.size;
-  //     }
-  //     if (param.spec) {
-  //       uData.spec = param.spec;
-  //     }
-  //     if (param.ram) {
-  //       uData.ram = this._.toInteger(param.ram);
-  //     }
-  //     if (param.rom) {
-  //       uData.rom = this._.toInteger(param.rom);
-  //     }
-  //     if (param.seriaNumber) {
-  //       uData.seriaNumber = param.seriaNumber;
-  //     }
+  /**
+   * 更新
+   */
+  async update(param: IUpdateIn): Promise<any> {
+    let uData: any = {};
+    if (param.modelName) {
+      uData.modelName = param.modelName;
+    }
+    if (param.size) {
+      uData.size = param.size;
+    }
+    if (param.spec) {
+      uData.spec = param.spec;
+    }
+    if (param.ram) {
+      uData.ram = _.toInteger(param.ram);
+    }
+    if (param.rom) {
+      uData.rom = _.toInteger(param.rom);
+    }
+    if (param.seriaNumber) {
+      uData.seriaNumber = param.seriaNumber;
+    }
 
-  //     const where = { id: param.id };
+    const where = { id: param.id };
+    // console.log("where : ", where);
+    const result = await this.mobilePhoneModel.update(where, uData);
+    console.log(result);
+    return result;
+  }
 
-  //     const result = await this.mobilePhoneModel.update(uData, where);
-  //     console.log(result);
-  //     return result;
-  //   }
+  /**
+   * 删除
+   */
+  async delete(param: IDelIn): Promise<any> {
+    console.log(param);
+
+    const result = await this.mobilePhoneModel.softDelete({ id: param.id });
+
+    console.log("result : " + result);
+    return result;
+  }
 }
