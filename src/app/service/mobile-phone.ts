@@ -1,10 +1,10 @@
-import { Provide, Inject } from "@midwayjs/decorator";
-import { Context } from "egg";
-import { InjectEntityModel } from "@midwayjs/orm";
-import { Repository, Like, FindManyOptions } from "typeorm";
-import * as _ from "lodash";
-import { BaseService } from "../base/base.service";
-import { MobilePhoneModel } from "../model/mobile-phone";
+import { Provide, Inject } from '@midwayjs/decorator';
+import { Context } from 'egg';
+import { InjectEntityModel } from '@midwayjs/orm';
+import { Repository, Like, FindManyOptions } from 'typeorm';
+import * as _ from 'lodash';
+import { BaseService } from '../base/base.service';
+import { MobilePhoneModel } from '../model/mobile-phone';
 import {
   IFindIn,
   IFindOneIn,
@@ -12,8 +12,8 @@ import {
   ICreateOut,
   IUpdateIn,
   IDelIn,
-} from "../interfaces/mobile-phone";
-import * as SnowFlake from "../utils/SnowFlake";
+} from '../interfaces/mobile-phone';
+import * as SnowFlake from '../utils/SnowFlake';
 
 export interface IMobilePhoneService extends MobilePhoneService {}
 
@@ -21,9 +21,6 @@ export interface IMobilePhoneService extends MobilePhoneService {}
 export class MobilePhoneService extends BaseService {
   @Inject()
   ctx: Context;
-
-  //   @Inject()
-  //   private _: LoDashStatic;
 
   @InjectEntityModel(MobilePhoneModel)
   mobilePhoneModel: Repository<MobilePhoneModel>;
@@ -45,10 +42,10 @@ export class MobilePhoneService extends BaseService {
    * 查找
    */
   async findAll(params: IFindIn): Promise<any> {
-    console.log("service : ", params);
+    console.log('service : ', params);
     const { limit, offset, ...filter } = params;
     const where: any = {};
-    const order: any = { id: "DESC", createdAt: "DESC" };
+    const order: any = { id: 'DESC', createdAt: 'DESC' };
 
     // 匹配id
     if (filter.id) {
@@ -75,14 +72,14 @@ export class MobilePhoneService extends BaseService {
    * 添加手机
    */
   async create(param: ICreateIn): Promise<ICreateOut> {
-    console.log("service param : ", param);
+    console.log('service param : ', param);
     const inse = param as MobilePhoneModel;
-    console.log("service param as inse: ", inse);
+    console.log('service param as inse: ', inse);
     inse.id = SnowFlake.GetId();
-    console.log("service inse : ", inse);
+    console.log('service inse : ', inse);
     const entity = await this.mobilePhoneModel.save(inse);
 
-    console.log("service entity : ", entity);
+    console.log('service entity : ', entity);
 
     return { id: entity.id };
   }
@@ -126,7 +123,7 @@ export class MobilePhoneService extends BaseService {
 
     const result = await this.mobilePhoneModel.softDelete({ id: param.id });
 
-    console.log("result : " + result);
+    console.log('result : ' + result);
     return result;
   }
 }

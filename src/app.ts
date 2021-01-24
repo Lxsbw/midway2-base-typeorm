@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { Application } from "egg";
+import { Application } from 'egg';
 
 // https://eggjs.org/zh-cn/advanced/loader.html
 export default class AppBootHook {
@@ -11,9 +11,9 @@ export default class AppBootHook {
 
   configWillLoad(): void {
     console.log();
-    console.log("====================================");
-    console.log("🚀  Your awesome APP is launching...");
-    console.log("====================================");
+    console.log('====================================');
+    console.log('🚀  Your awesome APP is launching...');
+    console.log('====================================');
   }
 
   // Config, plugin files have been loaded.
@@ -26,7 +26,7 @@ export default class AppBootHook {
 
   async serverDidReady(): Promise<void> {
     // Server is listening.
-    console.log("====================================");
+    console.log('====================================');
     console.log(
       `✅  http://${this.app.config.cluster.listen.hostname}:${this.app.config.cluster.listen.port}`
     );
@@ -39,7 +39,7 @@ export default class AppBootHook {
     console.log(
       `✅  http://${this.app.config.cluster.listen.hostname}:${this.app.config.cluster.listen.port}/interface/:api`
     );
-    console.log("✅  Your awesome APP launched");
-    console.log("====================================");
+    console.log('✅  Your awesome APP launched');
+    console.log('====================================');
   }
 }
