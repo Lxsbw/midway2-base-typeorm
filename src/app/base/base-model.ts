@@ -1,4 +1,9 @@
-import { CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from 'typeorm';
+import {
+  PrimaryColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+  DeleteDateColumn
+} from 'typeorm';
 
 /**
  * 基础的Model，对id字段默认会 转字符串处理
@@ -6,17 +11,12 @@ import { CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from 'typeorm';
  * 默认还会有createdAt、updatedAt
  */
 export class BaseModel {
-  //   id: string;
-
-  //   @CreateDateColumn({
-  //     name: "created_at",
-  //   })
-  //   createdAt: Date;
-
-  //   @UpdateDateColumn({
-  //     name: "updated_at",
-  //   })
-  //   updatedAt: Date;
+  @PrimaryColumn({
+    type: 'varchar',
+    length: 50,
+    comment: 'id'
+  })
+  id: string;
 
   @CreateDateColumn({
     type: 'datetime',
@@ -40,10 +40,4 @@ export class BaseModel {
     comment: '删除时间'
   })
   deletedAt: Date;
-
-  // 对字段进行预处理
-  //   @AfterLoad()
-  //   init() {
-  //     this.id = String(this.id);
-  //   }
 }

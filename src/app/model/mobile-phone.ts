@@ -5,20 +5,16 @@
  * @Last Modified time: 2021-01-25 00:47:35
  */
 import { EntityModel } from '@midwayjs/orm';
-import { Column, PrimaryColumn } from 'typeorm';
+import { Column } from 'typeorm';
 import { BaseModel } from '../base/base-model';
 
 @EntityModel({
   name: 'mobile_phone'
 })
 export class MobilePhoneModel extends BaseModel {
-  @PrimaryColumn({
-    type: 'varchar'
-  })
-  id: string;
-
   @Column({
     type: 'varchar',
+    length: 50,
     name: 'model_name',
     comment: '型号'
   })
@@ -26,12 +22,14 @@ export class MobilePhoneModel extends BaseModel {
 
   @Column({
     type: 'varchar',
+    length: 50,
     comment: '尺寸'
   })
   size: string;
 
   @Column({
     type: 'varchar',
+    length: 50,
     comment: '规格'
   })
   spec: string;
@@ -50,6 +48,7 @@ export class MobilePhoneModel extends BaseModel {
 
   @Column({
     type: 'varchar',
+    length: 50,
     name: 'seria_number',
     comment: '序列号'
   })
