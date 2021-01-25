@@ -1,7 +1,7 @@
 {
   "name": "midway2-base-typeorm",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.0.1",
+  "description": "Node.js & Midway2 & TypeScript & MVC & TypeORM & swagger",
   "private": true,
   "dependencies": {
     "@midwayjs/decorator": "^2.6.8",
