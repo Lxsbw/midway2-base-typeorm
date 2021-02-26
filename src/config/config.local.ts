@@ -8,7 +8,7 @@ export const orm: ConnectionOptions = {
   username: 'root',
   password: 'Admin@123',
   database: 'midway_test',
-  synchronize: true,
+  synchronize: false,
   logging: true
 };
 

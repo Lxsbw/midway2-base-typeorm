@@ -10,7 +10,6 @@ import {
   Body,
   Param,
   Validate
-  // ALL,
 } from '@midwayjs/decorator';
 import { Context } from 'egg';
 import { CreateApiDoc } from '@midwayjs/swagger';
@@ -34,11 +33,12 @@ export class MobilePhoneController extends BaseController {
   @(CreateApiDoc()
     .summary('id查找')
     .description('id查找')
-    .param('ctx')
-    .param('id', { required: true, example: 'xx' })
+    .param('id', { name: 'id', required: true, example: 'xx' })
     .build())
-  async find(ctx: Context, @Query() id: string) {
-    const result = await this.mobilePhoneService.findOne(ctx.request.query);
+  async find(@Query() id: string) {
+    const result = await this.mobilePhoneService.findOne(
+      this.ctx.request.query
+    );
     return { success: true, message: 'OK', data: result };
   }
 
@@ -46,20 +46,30 @@ export class MobilePhoneController extends BaseController {
   @(CreateApiDoc()
     .summary('查找')
     .description('查找')
-    .param('ctx')
-    .param('当前页', { type: 'number', required: true, example: 0 })
-    .param('每页数量', { type: 'number', required: true, example: 10 })
-    .param('id', { type: 'string' })
-    .param('型号', { type: 'string' })
+    .param('当前页', {
+      name: 'offset',
+      type: 'number',
+      required: true,
+      example: 0
+    })
+    .param('每页数量', {
+      name: 'limit',
+      type: 'number',
+      required: true,
+      example: 10
+    })
+    .param('id', { name: 'id', type: 'string' })
+    .param('型号', { name: 'modelName', type: 'string' })
     .build())
   async findAll(
-    ctx: Context,
-    @Query() offset: number,
-    @Query() limit: number,
-    @Query() id: string,
-    @Query() modelName: string
+    @Query('offset') offset: number,
+    @Query('limit') limit: number,
+    @Query('id') id: string,
+    @Query('modelName') modelName: string
   ) {
-    const result = await this.mobilePhoneService.findAll(ctx.request.query);
+    const result = await this.mobilePhoneService.findAll(
+      this.ctx.request.query
+    );
     return { success: true, message: 'OK', data: result };
   }
 
@@ -68,11 +78,10 @@ export class MobilePhoneController extends BaseController {
   @(CreateApiDoc()
     .summary('添加手机')
     .description('添加手机')
-    .param('ctx')
     .param('手机信息', { type: 'object', required: true })
     .build())
-  async create(ctx: Context, @Body() param: ICreateIn) {
-    const result = await this.mobilePhoneService.create(ctx.request.body);
+  async create(@Body() param: ICreateIn) {
+    const result = await this.mobilePhoneService.create(this.ctx.request.body);
     return { success: true, message: 'OK', data: result };
   }
 
@@ -80,12 +89,11 @@ export class MobilePhoneController extends BaseController {
   @(CreateApiDoc()
     .summary('更新手机')
     .description('更新手机')
-    .param('ctx')
     .param('手机信息', { type: 'object', required: true })
     .build())
-  async update(ctx: Context, @Body() param: IUpdateIn) {
-    // console.log("Controller : ", ctx.request.body);
-    const result = await this.mobilePhoneService.update(ctx.request.body);
+  async update(@Body() param: IUpdateIn) {
+    // console.log("Controller : ", this.ctx.request.body);
+    const result = await this.mobilePhoneService.update(this.ctx.request.body);
     return { success: true, message: 'OK', data: result };
   }
 
@@ -93,12 +101,13 @@ export class MobilePhoneController extends BaseController {
   @(CreateApiDoc()
     .summary('删除手机')
     .description('删除手机')
-    .param('ctx')
-    .param('手机id', { type: 'object', required: true })
+    .param('手机id', { name: 'id', type: 'object', required: true })
     .build())
-  async delete(ctx: Context, @Param() id: string) {
-    console.log('Controller : ', ctx.params);
-    const result = await this.mobilePhoneService.delete({ id: ctx.params.id });
+  async delete(@Param() id: string) {
+    console.log('Controller : ', this.ctx.params);
+    const result = await this.mobilePhoneService.delete({
+      id: this.ctx.params.id
+    });
     return { success: true, message: 'OK', data: result };
   }
 }
