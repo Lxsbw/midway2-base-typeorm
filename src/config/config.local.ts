@@ -3,8 +3,8 @@ import { ConnectionOptions } from 'typeorm';
 // 数据库配置
 export const orm: ConnectionOptions = {
   type: 'mysql',
-  host: '121.37.188.31',
-  port: 6606,
+  host: '127.0.0.1',
+  port: 6608,
   username: 'root',
   password: 'Admin@123',
   database: 'midway_test',
